@@ -10,8 +10,16 @@ router.get('/', async (req, res) => {
 // get single question by Id
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
-    const question = await Question.findById(id);
-    res.json(question);
+    try {
+        const question = await Question.findById(id);
+        if (!question) {
+            return res.status(404).json({ message: 'Question not found' });
+        }
+        res.json(question);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
 });
 
 router.post('/', async (req, res) => {
