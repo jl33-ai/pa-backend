@@ -12,10 +12,6 @@ app.use(express.json());
 mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    ssl: true,
-    sslValidate: true,
-    tlsAllowInvalidCertificates: false,
-    tlsAllowInvalidHostnames: false
 });
 
 // Routes
