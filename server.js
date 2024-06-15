@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/poll-anything', {
+mongoose.connect('mongodb+srv://justin00man:AIWr2mnFhPYkKB8I@cluster0.l2bhg9h.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -17,7 +17,7 @@ const questionRoutes = require('./routes/questions');
 app.use('/api/questions', questionRoutes);
 
 // Start the server
-const port = 0429;
+const port = 4029;
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
