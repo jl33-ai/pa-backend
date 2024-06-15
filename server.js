@@ -2,12 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
+require('dotenv').config();
+
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb+srv://justin00man:AIWr2mnFhPYkKB8I@cluster0.l2bhg9h.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -17,7 +19,7 @@ const questionRoutes = require('./routes/questions');
 app.use('/api/questions', questionRoutes);
 
 // Start the server
-const port = 4029;
+const port = process.env.PORT || 2904;
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
