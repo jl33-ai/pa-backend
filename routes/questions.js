@@ -3,8 +3,12 @@ const router = express.Router();
 const Question = require('../models/Question');
 
 router.get('/', async (req, res) => {
-    const questions = await Question.find();
-    res.json(questions);
+    try {
+        const questions = await Question.find().sort({ createdAt: -1 }).limit(100);
+        res.json(questions);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
 
 // get single question by Id
